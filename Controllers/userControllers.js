@@ -46,7 +46,7 @@ exports.userget = async (req, res) => {
 
     // put all query params here
     const query = {
-        fname: { $regex: search.toLowerCase() },
+        fname: { $regex: search, $options: 'i' },
     }
 
     if (status != "All") {
@@ -55,7 +55,7 @@ exports.userget = async (req, res) => {
     if (gender != "All") {
         query.gender = gender
     }
-    
+
     try {
 
         const skip = (page - 1) * ITEM_PER_PAGE // 1 * 20
